@@ -50,7 +50,7 @@ const NoteList = (props) => {
         const loadNotesFromServer = async () => {
             const response = await fetch('/getNotes');
             const data = await response.json();
-            setDomos(data.notes);
+            setNotes(data.notes);
         };
         loadNotesFromServer();
     }, [props.reloadNotes]);
@@ -67,7 +67,7 @@ const NoteList = (props) => {
         const data = await response.json();
 
         if (response.ok) {
-            setDomos(domos.filter(note => note._id !== id));
+            setNotes(notes.filter(note => note._id !== id));
         } else {
             alert(data.error || 'Error deleting Note');
         }
@@ -86,9 +86,9 @@ const NoteList = (props) => {
             <div key={note.id} className="note">
                 <img src="/assets/img/domoface.jpeg" alt="domo face" className="domoFace" />
                 <h3 className="noteName">Name: {note.name}</h3>
-                <h3 className="noteDescription">Age: {note.description}</h3>
+                <h3 className="noteDescription">Description: {note.description}</h3>
                 <div className="noteDeleteButtonContainer">
-                    <button onClick={() => deleteDomo(domo._id)} className="deleteNoteButton"> delete </button>
+                    <button onClick={() => deleteNote(note._id)} className="deleteNoteButton"> delete </button>
                 </div>
             </div>
         );

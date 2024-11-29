@@ -18,7 +18,7 @@ const makeNote = async (req,res) => {
 
     try {
         const newNote = new Note(noteData);
-        await newDomo.save();
+        await newNote.save();
         return res.status(201).json({ name: newNote.name, description: newNote.description});
     } catch (err) {
         console.log(err);

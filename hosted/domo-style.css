@@ -47,7 +47,7 @@ nav:nth-child(1) {
     background-color: #66bdff;
 }
 
-.noteForm {
+.domoForm {
     border: 2px solid #338acc;
     width: 100%;
     max-width: 1200px;
@@ -64,15 +64,15 @@ nav:nth-child(1) {
     gap: 10px; 
 }
 
-.noteForm label {
+.domoForm label {
     width: 80px;
     font-size: 1.2em;
     color: white;
     text-align: right;
 }
 
-.noteForm input[type="text"],
-.noteForm input[type="number"] {
+.domoForm input[type="text"],
+.domoForm input[type="number"] {
     padding: 5px;
     font-size: 1em;
     border: 1px solid #338acc;
@@ -80,7 +80,7 @@ nav:nth-child(1) {
     margin-left: 5px;
 }
 
-.makeNoteSubmit {
+.makeDomoSubmit {
     width: 120px;
     padding: 10px;
     background-color: #338acc;
@@ -92,7 +92,7 @@ nav:nth-child(1) {
     margin-left: 100px;
 }
 
-.makeNoteSubmit:hover {
+.makeDomoSubmit:hover {
     background-color: #66bdff;
 }
 
@@ -187,7 +187,7 @@ nav:nth-child(1) {
     font-style: italic;
 }
 
-#note {
+#domo {
     z-index: 225;
     margin-top: -20px;
     margin-left: 135px;
@@ -198,7 +198,7 @@ nav:nth-child(1) {
     transform: rotate(330deg);
 }
 
-#notes {
+#domos {
     width: 40%;
     min-width: 400px;
     border: 2px solid #55acee;
@@ -207,7 +207,7 @@ nav:nth-child(1) {
     margin-top: 100px;
 }
 
-.note {
+.domo {
     width: 95%;
     margin: 0 auto;
     margin-top: 2px;
@@ -220,7 +220,7 @@ nav:nth-child(1) {
     overflow: hidden;
 }
 
-.note:hover {
+.domo:hover {
     transition: border-color 0.2s ease-out;
     border-color: rgba(255,255,255, 0.8);
     transition: background-color 2.6s ease-out;
@@ -237,7 +237,7 @@ img.domoFace {
     float:left;
 }
 
-h3.emptyNote {
+h3.emptyDomo {
     width: 400px;
     font-size: 1.5em;
     margin: 0 auto;
@@ -245,7 +245,7 @@ h3.emptyNote {
     margin-top: 18px;
 }
 
-h3.noteName {
+h3.domoName {
     float:left;
     width: 200px;
     font-weight: bold;
@@ -253,7 +253,7 @@ h3.noteName {
     font-size: 1.5em;
 }
 
-h3.noteDescription {
+h3.domoAge {
     float:left;
     width: 100px;
     font-weight: bold;
@@ -261,7 +261,7 @@ h3.noteDescription {
     font-size: 1.5em;
 }
 
-h3.noteLevel {
+h3.domoLevel {
     float:left;
     width: 100px;
     font-weight: bold;
@@ -269,22 +269,22 @@ h3.noteLevel {
     font-size: 1.5em;
 }
 
-.note:first-child {
+.domo:first-child {
     margin-top: 10px;
 }
 
-.noteDeleteButtonContainer:last-child {
+.domo:last-child {
     margin-bottom:10px;
 }
 
-.noteDeleteButtonContainer {
+.domoDeleteButtonContainer {
     display: flex;
     justify-content: center;
     align-items: center;    
     padding-top: 20px;       
 }
 
-.deleteNoteButton {
+.deleteDomoButton {
     background-color: #e74c3c; 
     color: white;
     padding: 10px 20px;
@@ -295,6 +295,6 @@ h3.noteLevel {
     transition: background-color 0.3s ease;
 }
 
-.deleteNoteButton:hover {
+.deleteDomoButton:hover {
     background-color: #c0392b; 
 }
