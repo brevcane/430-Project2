@@ -1,300 +1,202 @@
-html, body {
-    height: 100%;
-    width: 100%;
+/* General Styles */
+* {
     margin: 0;
     padding: 0;
-    overflow-x: hidden;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #4b6266;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    width: 100%;
+    max-width: 600px;
+    background-color: #1c1c1c;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+label {
+    font-size: 16px;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #00b0ff;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="submit"] {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #333;
+    border-radius: 5px;
+    width: 100%;
+}
+
+input[type="submit"] {
+    background-color: #00b0ff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+input[type="submit"]:hover {
+    background-color: #0091cc;
+}
+
+#errorMessage {
+    display: none;
+    color: red;
+    font-size: 14px;
+    text-align: left;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+#errorMessage.visible {
+    display: block;
+}
+
+#domoMessage {
+    display: none;
+    margin-top: 10px;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1c1c1c;
+    padding: 10px 20px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+
+nav a {
+    color: #00b0ff;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #0091cc;
 }
 
 #logo {
     height: 40px;
-    width: 40;
-    padding-top: 5px;
-    float:left;
-    border-radius: 8px;
-}
-
-nav {
-    width: 100%;
-    height: 50px;
-    background-color: #55acee;
-}
-
-nav:nth-child(1) {
-    padding-left: 25px;
 }
 
 .navlink {
-    padding: 5px;
-    padding-top: 12px;
-    padding-left: 20px;
-    color: white;
-    font-size: 1.3em;
-    float: left;
+    margin-left: 20px;
 }
 
-.navlink a, .navlink a:link, .navlink a:visited, .navlink a:hover, .navlink a:active {
-    color: white;
-    text-decoration: none;
-    padding: 5px;
-    border-radius: 4px;
-    background-color: #55acee;
-    transition: background-color 0.4s ease;
-}
-
-.navlink a:hover {
-    transition: background-color 0.8s ease;
-    background-color: #66bdff;
-}
-
-.noteForm {
-    border: 2px solid #338acc;
+section#content {
+    margin-top: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
-    max-width: 1200px;
-    padding: 10px;
-    background-color: #55acee;
-    border-radius: 8px;
+}
+
+.notes-container {
     display: flex;
-    gap: 10px;
-}
-
-.formField {
-    display: flex;
-    flex-direction: row;
-    gap: 10px; 
-}
-
-.noteForm label {
-    width: 80px;
-    font-size: 1.2em;
-    color: white;
-    text-align: right;
-}
-
-.noteForm input[type="text"],
-.noteForm input[type="number"] {
-    padding: 5px;
-    font-size: 1em;
-    border: 1px solid #338acc;
-    border-radius: 4px;
-    margin-left: 5px;
-}
-
-.makeNoteSubmit {
-    width: 120px;
-    padding: 10px;
-    background-color: #338acc;
-    border: none;
-    border-radius: 4px;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.4s ease;
-    margin-left: 100px;
-}
-
-.makeNoteSubmit:hover {
-    background-color: #66bdff;
-}
-
-.mainForm {
-    height: 300px;
-    width: 350px;
-    margin: 0 auto;
-    padding-top: 350px;
-    font-size: 1.2em;
-}
-
-.mainForm h3 {
-    text-align: center;
-}
-
-.mainForm label {
-    display: inline-block;
-    width: 100px;
-    margin-right: 10px;
-    text-align: right;
-    font-size: 1.2em;
-}
-
-.formSubmit {
-    transition: background-color 0.4s ease;
-    display: block;
-    text-align: center;
-    margin: 0 auto;
-    margin-top: 14px;
-    font-size: 1.2em;
-    width: 100px;
-    background-color: #55acee;
-    border-radius: 2px;
-    border-color: #66acee;
-    padding: 3px 0px;
-    color: white;
-    text-decoration: none;
-}
-
-.formSubmit:link, .formSubmit:visited, .formSubmit:hover, .formSubmit:active {
-    color: white;
-}
-
-.formSubmit:hover {
-    transition: background-color 0.4s ease;
-    background-color: #338acc;
-}
-
-#user, #pass, #pass2 {
-    text-align: center;
-    font-size: 1.1em;
-    width: 180px;
-    border-radius: 6px;
-}
-
-#user:focus, #pass:focus, #pass2:focus {
-    outline: none;
-    box-shadow: 0px 0px 1px 1px #55acee;
-}
-
-.hidden {
-    display: none;
-}
-
-#domoMessage {
-    top: 250px;
-    width: 250px;
-    height: 650px;
-    position: absolute;
-    z-index: 200;
-    right: 0px;
-    overflow: hidden;
-}
-
-#domoMessage h3 {
-    width: 200px;
-    position: absolute;
-    top: 0px;
-    left: 20px;
-}
-
-#speech {
-    height: 120px;
-    width: 250px;
-    z-index:300;
-}
-
-#errorMessage {
-    font-size: 1.2em;
-    font-weight: bold;
-    color: red;
-    font-style: italic;
-}
-
-#note {
-    z-index: 225;
-    margin-top: -20px;
-    margin-left: 135px;
-    height: 450px;
-    width: 300px;
-    -ms-transform: rotate(330deg);
-    -webkit-transform: rotate(330deg); 
-    transform: rotate(330deg);
-}
-
-#notes {
-    width: 40%;
-    min-width: 400px;
-    border: 2px solid #55acee;
-    border-radius: 4px;
-    margin: 0 auto;
-    margin-top: 100px;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
 }
 
 .note {
-    width: 95%;
-    margin: 0 auto;
-    margin-top: 2px;
-    margin-bottom: 2px;
-    border: 2px solid #55acee;
-    border-radius: 4px;
-    background-color: #55acee;
-    padding: 10px;
-    min-height:60px;
-    overflow: hidden;
+    background-color: #2c2c2c;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.note:hover {
-    transition: border-color 0.2s ease-out;
-    border-color: rgba(255,255,255, 0.8);
-    transition: background-color 2.6s ease-out;
-    background-color: #66bfff;
-}
-
-img.domoFace {
-    margin-left: 25px;
-    margin-right: 10px;
-    height: 50px;
-    width: 50px;
-    border-radius: 4px;
-    margin-top:10px;
-    float:left;
-}
-
-h3.emptyNote {
-    width: 400px;
-    font-size: 1.5em;
-    margin: 0 auto;
-    text-align: center;
-    margin-top: 18px;
-}
-
-h3.noteName {
-    float:left;
-    width: 200px;
+.note-header {
+    font-size: 20px;
     font-weight: bold;
-    padding-left: 65px;
-    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: #00b0ff;
 }
 
-h3.noteDescription {
-    float:left;
-    width: 100px;
-    font-weight: bold;
-    padding-right: 40px;
-    font-size: 1.5em;
+.note-description {
+    font-size: 14px;
+    color: #bbb;
 }
 
-h3.noteLevel {
-    float:left;
-    width: 100px;
-    font-weight: bold;
-    padding-right: 40px;
-    font-size: 1.5em;
-}
-
-.note:first-child {
-    margin-top: 10px;
-}
-
-.noteDeleteButtonContainer:last-child {
-    margin-bottom:10px;
-}
-
-.noteDeleteButtonContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;    
-    padding-top: 20px;       
-}
-
-.deleteNoteButton {
-    background-color: #e74c3c; 
-    color: white;
+button {
     padding: 10px 20px;
-    font-size: 1em;
+    font-size: 16px;
     border: none;
-    border-radius: 5px;
+    background-color: #00b0ff;
+    color: white;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    border-radius: 5px;
+    font-weight: bold;
 }
 
-.deleteNoteButton:hover {
-    background-color: #c0392b; 
+button:hover {
+    background-color: #0091cc;
+}
+
+.note-form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.note-form label {
+    font-weight: bold;
+    font-size: 16px;
+    color: #00b0ff;
+}
+
+.note-form input,
+.note-form textarea {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #333;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.note-form textarea {
+    resize: vertical;
+    height: 150px;
+}
+
+.note-form input[type="submit"] {
+    background-color: #00b0ff;
+    color: white;
+    border: none;
+    font-weight: bold;
+}
+
+.note-form input[type="submit"]:hover {
+    background-color: #0091cc;
 }

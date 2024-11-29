@@ -84,7 +84,6 @@ const NoteList = (props) => {
     const noteNodes = notes.map(note => {
         return (
             <div key={note.id} className="note">
-                <img src="/assets/img/domoface.jpeg" alt="domo face" className="domoFace" />
                 <h3 className="noteName">Name: {note.name}</h3>
                 <h3 className="noteDescription">Description: {note.description}</h3>
                 <div className="noteDeleteButtonContainer">
