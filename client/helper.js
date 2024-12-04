@@ -4,11 +4,11 @@
 */
 const handleError = (message) => {
   const errorMessageElement = document.getElementById('errorMessage');
-  const domoMessageElement = document.getElementById('domoMessage');
+  const MessageElement = document.getElementById('Message');
 
   errorMessageElement.textContent = message;
-  domoMessageElement.classList.remove('hidden');
-  domoMessageElement.classList.add('visible'); 
+  MessageElement.classList.remove('hidden');
+  MessageElement.classList.add('visible'); 
 };
 
 /* Sends post requests to the server using fetch. Will look for various
@@ -24,9 +24,9 @@ const sendPost = async (url, data, handler) => {
   });
 
   const result = await response.json();
-  const domoMessageElement = document.getElementById('domoMessage');
-  domoMessageElement.classList.add('hidden');
-  domoMessageElement.classList.remove('visible'); 
+  const MessageElement = document.getElementById('Message');
+  MessageElement.classList.add('hidden');
+  MessageElement.classList.remove('visible'); 
 
   if (result.redirect) {
       window.location = result.redirect;
@@ -42,8 +42,8 @@ const sendPost = async (url, data, handler) => {
 };
 
 const hideError = () => {
-  document.getElementById('domoMessage').classList.add('hidden');
-  document.getElementById('domoMessage').classList.remove('visible'); 
+  document.getElementById('Message').classList.add('hidden');
+  document.getElementById('Message').classList.remove('visible'); 
 };
 
 module.exports = {

@@ -73,12 +73,12 @@ input[type="submit"]:hover {
     display: block; 
 }
 
-#domoMessage {
+#Message {
     display: none; 
     margin-top: 10px;
 }
 
-#domoMessage.visible {
+#Message.visible {
     display: block; /
 }
 
