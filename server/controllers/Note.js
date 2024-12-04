@@ -59,9 +59,35 @@ const deleteNote = async (req, res) => {
     }
 };
 
+const updateNote = async (req, res) => {
+    const { id, name, description } = req.body;
+
+    if (!id || !name || !description) {
+        return res.status(400).json({ error: 'ID, name, and description are required!' });
+    }
+
+    try {
+        const updatedNote = await Note.findByIdAndUpdate(
+            id,
+            { name, description },
+            { new: true }
+        );
+
+        if (!updatedNote) {
+            return res.status(404).json({ error: 'Note not found!' });
+        }
+
+        return res.status(200).json({ message: 'Note updated successfully', note: updatedNote });
+    } catch (err) {
+        console.log(err);
+        return res.status(500).json({ error: 'Error updating the note!' });
+    }
+};
+
 module.exports = {
   makerPage,
   makeNote,
   getNotes,
   deleteNote,
+  updateNote, 
 };

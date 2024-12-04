@@ -16,6 +16,8 @@ const router = (app) => {
 
   app.post('/deleteNote', mid.requiresLogin, controllers.Note.deleteNote);
 
+  app.post('/editNote', mid.requiresLogin, controllers.Note.updateNote);
+  
   app.get('/', mid.requiresSecure, mid.requiresLogout, controllers.Account.loginPage);
 };
 
