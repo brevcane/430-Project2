@@ -3,44 +3,51 @@
    end in an error.
 */
 const handleError = (message) => {
-    document.getElementById('errorMessage').textContent = message;
-    document.getElementById('domoMessage').classList.remove('hidden');
-  };
-  
-  /* Sends post requests to the server using fetch. Will look for various
-     entries in the response JSON object, and will handle them appropriately.
-  */
-  const sendPost = async (url, data, handler) => {
-    const response = await fetch(url, {
+  const errorMessageElement = document.getElementById('errorMessage');
+  const domoMessageElement = document.getElementById('domoMessage');
+
+  errorMessageElement.textContent = message;
+  domoMessageElement.classList.remove('hidden');
+  domoMessageElement.classList.add('visible'); 
+};
+
+/* Sends post requests to the server using fetch. Will look for various
+ entries in the response JSON object, and will handle them appropriately.
+*/
+const sendPost = async (url, data, handler) => {
+  const response = await fetch(url, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
+          'Content-Type': 'application/json',
       },
       body: JSON.stringify(data),
-    });
-  
-    const result = await response.json();
-    document.getElementById('domoMessage').classList.add('hidden');
-  
-    if(result.redirect) {
+  });
+
+  const result = await response.json();
+  const domoMessageElement = document.getElementById('domoMessage');
+  domoMessageElement.classList.add('hidden');
+  domoMessageElement.classList.remove('visible'); 
+
+  if (result.redirect) {
       window.location = result.redirect;
-    }
-  
-    if(result.error) {
+  }
+
+  if (result.error) {
       handleError(result.error);
-    }
+  }
 
-    if(handler) {
-        handler(result);
-    }
-  };
+  if (handler) {
+      handler(result);
+  }
+};
 
-  const hideError = () => {
-    document.getElementById('domoMessage').classList.add('hidden');
-  };
+const hideError = () => {
+  document.getElementById('domoMessage').classList.add('hidden');
+  document.getElementById('domoMessage').classList.remove('visible'); 
+};
 
-  module.exports = {
-    handleError,
-    sendPost,
-    hideError,
-  };
+module.exports = {
+  handleError,
+  sendPost,
+  hideError,
+};

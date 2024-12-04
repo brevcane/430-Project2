@@ -62,7 +62,6 @@ input[type="submit"]:hover {
 }
 
 #errorMessage {
-    display: none;
     color: red;
     font-size: 14px;
     text-align: left;
@@ -71,13 +70,18 @@ input[type="submit"]:hover {
 }
 
 #errorMessage.visible {
-    display: block;
+    display: block; 
 }
 
 #domoMessage {
-    display: none;
+    display: none; 
     margin-top: 10px;
 }
+
+#domoMessage.visible {
+    display: block; /
+}
+
 
 nav {
     display: flex;
