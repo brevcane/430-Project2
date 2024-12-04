@@ -30,14 +30,14 @@ const NoteForm = (props) => {
     const handleNameChange = (e) => {
         const newValue = e.target.value;
         if (newValue.length <= nameMaxLength) {
-            setNameLength(newValue.length); // Update name character count
+            setNameLength(newValue.length); 
         }
     };
 
     const handleDescriptionChange = (e) => {
         const newValue = e.target.value;
         if (newValue.length <= descriptionMaxLength) {
-            setDescriptionLength(newValue.length); // Update description character count
+            setDescriptionLength(newValue.length); 
         }
     };
 
@@ -58,7 +58,7 @@ const NoteForm = (props) => {
                     name="name"
                     placeholder="Note Name"
                     onChange={handleNameChange}
-                    maxLength={nameMaxLength}  // Enforce maxLength here
+                    maxLength={nameMaxLength}  
                 />
                 <p>{nameLength}/{nameMaxLength} characters</p>
             </div>
@@ -71,7 +71,7 @@ const NoteForm = (props) => {
                     name="description"
                     placeholder="Note Description"
                     onChange={handleDescriptionChange}
-                    maxLength={descriptionMaxLength}  // Enforce maxLength here
+                    maxLength={descriptionMaxLength}  
                 />
                 <p>{descriptionLength}/{descriptionMaxLength} characters</p>
             </div>
