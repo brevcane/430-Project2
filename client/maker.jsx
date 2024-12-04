@@ -4,16 +4,6 @@ const { useState, useEffect } = React;
 const { createRoot } = require('react-dom/client');
 
 const NoteForm = (props) => {
-    const [noteCount, setNoteCount] = useState(0);
-
-    useEffect(() => {
-        const loadNoteCount = async () => {
-            const response = await fetch('/getNotes');
-            const data = await response.json();
-            setNoteCount(data.notes.length);
-        };
-        loadNoteCount();
-    }, [props.isPremium]); 
 
     const handleNoteSubmit = (e) => {
         e.preventDefault();
@@ -27,7 +17,6 @@ const NoteForm = (props) => {
         }
 
         helper.sendPost(e.target.action, { name, description }, () => {
-            setNoteCount(prevCount => prevCount + 1);
             props.triggerReload();
         });
 
@@ -35,7 +24,8 @@ const NoteForm = (props) => {
     };
 
     return (
-        <form id="noteForm"
+        <form
+            id="noteForm"
             onSubmit={handleNoteSubmit}
             name="noteForm"
             action="/maker"
@@ -52,12 +42,7 @@ const NoteForm = (props) => {
                 <input id="noteDescription" type="text" name="description" placeholder="Note Description" />
             </div>
 
-            <input className="makeNoteSubmit" type="submit" value="Make Note" disabled={!props.isPremium && noteCount >= 3} />
-            {!props.isPremium && noteCount >= 3 && (
-                <div className="noteLimitWarning">
-                    <p>You have reached the maximum number of notes. Please upgrade to premium to create more notes.</p>
-                </div>
-            )}
+            <input className="makeNoteSubmit" type="submit" value="Make Note" />
         </form>
     );
 };
@@ -65,7 +50,7 @@ const NoteForm = (props) => {
 
 const NoteList = (props) => {
     const [notes, setNotes] = useState(props.notes);
-    const [isEditing, setIsEditing] = useState(null); 
+    const [isEditing, setIsEditing] = useState(null);
     const [editedNote, setEditedNote] = useState({ name: '', description: '' });
 
     useEffect(() => {
@@ -73,14 +58,10 @@ const NoteList = (props) => {
             const response = await fetch('/getNotes');
             const data = await response.json();
 
-            if (!props.isPremium) {
-                data.notes = data.notes.slice(0, 3);
-            }
-
             setNotes(data.notes);
         };
         loadNotesFromServer();
-    }, [props.reloadNotes, props.isPremium]);
+    }, [props.reloadNotes]);
 
     const deleteNote = async (id) => {
         const response = await fetch('/deleteNote', {
@@ -143,38 +124,36 @@ const NoteList = (props) => {
         );
     }
 
-    const noteNodes = notes.map(note => {
-        return (
-            <div key={note._id} className="note">
-                {isEditing === note._id ? (
-                    <div>
-                        <input
-                            type="text"
-                            name="name"
-                            value={editedNote.name}
-                            onChange={handleEditChange}
-                        />
-                        <input
-                            type="text"
-                            name="description"
-                            value={editedNote.description}
-                            onChange={handleEditChange}
-                        />
-                        <button onClick={() => saveEdit(note._id)}>Save</button>
-                    </div>
-                ) : (
-                    <div>
-                        <h3 className="noteName">Name: {note.name}</h3>
-                        <h3 className="noteDescription">Description: {note.description}</h3>
-                        {props.isPremium && (
-                            <button onClick={() => startEdit(note)}>Edit</button>
-                        )}
-                        <button onClick={() => deleteNote(note._id)}>Delete</button>
-                    </div>
-                )}
-            </div>
-        );
-    });
+    const noteNodes = notes.map(note => (
+        <div key={note._id} className="note">
+            {isEditing === note._id ? (
+                <div>
+                    <input
+                        type="text"
+                        name="name"
+                        value={editedNote.name}
+                        onChange={handleEditChange}
+                    />
+                    <input
+                        type="text"
+                        name="description"
+                        value={editedNote.description}
+                        onChange={handleEditChange}
+                    />
+                    <button onClick={() => saveEdit(note._id)}>Save</button>
+                </div>
+            ) : (
+                <div>
+                    <h3 className="noteName">Name: {note.name}</h3>
+                    <h3 className="noteDescription">Description: {note.description}</h3>
+                    {props.isPremium && (
+                        <button onClick={() => startEdit(note)}>Edit</button>
+                    )}
+                    <button onClick={() => deleteNote(note._id)}>Delete</button>
+                </div>
+            )}
+        </div>
+    ));
 
     return (
         <div className="noteList">
@@ -189,17 +168,15 @@ const App = () => {
 
     return (
         <div>
+            <div>
+                <label> Premium </label>
+                <input type="checkbox" checked={isPremium} onChange={() => setIsPremium(!isPremium)} />
+            </div>
             <div id="makeNote">
                 <NoteForm triggerReload={() => setReloadNotes(!reloadNotes)} isPremium={isPremium} />
             </div>
             <div id="notes">
                 <NoteList notes={[]} reloadNotes={reloadNotes} isPremium={isPremium} />
-            </div>
-            <div>
-                <label>
-                    Premium
-                    <input type="checkbox" checked={isPremium} onChange={() => setIsPremium(!isPremium)} />
-                </label>
             </div>
         </div>
     );
