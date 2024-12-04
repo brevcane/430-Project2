@@ -37,6 +37,10 @@ const AccountSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  premium: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 // Converts a doc to something we can store in redis later on.
