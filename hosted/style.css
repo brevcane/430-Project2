@@ -265,4 +265,4 @@ button:hover {
   .switch input:checked + .slider::after {
     transform: translateX(-150%);
   }
-  
+

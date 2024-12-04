@@ -4,6 +4,10 @@ const { useState, useEffect } = React;
 const { createRoot } = require('react-dom/client');
 
 const NoteForm = (props) => {
+    const [nameLength, setNameLength] = useState(0);
+    const [descriptionLength, setDescriptionLength] = useState(0);
+    const descriptionMaxLength = 100;
+    const nameMaxLength = 30;
 
     const handleNoteSubmit = (e) => {
         e.preventDefault();
@@ -23,6 +27,20 @@ const NoteForm = (props) => {
         return false;
     };
 
+    const handleNameChange = (e) => {
+        const newValue = e.target.value;
+        if (newValue.length <= nameMaxLength) {
+            setNameLength(newValue.length); // Update name character count
+        }
+    };
+
+    const handleDescriptionChange = (e) => {
+        const newValue = e.target.value;
+        if (newValue.length <= descriptionMaxLength) {
+            setDescriptionLength(newValue.length); // Update description character count
+        }
+    };
+
     return (
         <form
             id="noteForm"
@@ -34,19 +52,34 @@ const NoteForm = (props) => {
         >
             <div className="formField">
                 <label htmlFor="name">Name: </label>
-                <input id="noteName" type="text" name="name" placeholder="Note Name" />
+                <input
+                    id="noteName"
+                    type="text"
+                    name="name"
+                    placeholder="Note Name"
+                    onChange={handleNameChange}
+                    maxLength={nameMaxLength}  // Enforce maxLength here
+                />
+                <p>{nameLength}/{nameMaxLength} characters</p>
             </div>
 
             <div className="formField">
                 <label htmlFor="description">Description: </label>
-                <input id="noteDescription" type="text" name="description" placeholder="Note Description" />
+                <input
+                    id="noteDescription"
+                    type="text"
+                    name="description"
+                    placeholder="Note Description"
+                    onChange={handleDescriptionChange}
+                    maxLength={descriptionMaxLength}  // Enforce maxLength here
+                />
+                <p>{descriptionLength}/{descriptionMaxLength} characters</p>
             </div>
 
             <input className="makeNoteSubmit" type="submit" value="Make Note" />
         </form>
     );
 };
-
 
 const NoteList = (props) => {
     const [notes, setNotes] = useState(props.notes);
