@@ -4,10 +4,10 @@ const { Account } = models;
 
 const loginPage = (req, res) => res.render('login');
 
-const logout = (req, res) => { 
-    req.session.destroy();
-    res.redirect('/');
-}
+const logout = (req, res) => {
+  req.session.destroy();
+  res.redirect('/');
+};
 const login = (req, res) => {
   const username = `${req.body.username}`;
   const pass = `${req.body.pass}`;
@@ -58,7 +58,7 @@ const signup = async (req, res) => {
 const passwordPage = (req, res) => res.render('password');
 
 const changePassword = async (req, res) => {
-  const { username } = req.session.account;  
+  const { username } = req.session.account;
   const { pass, pass2 } = req.body;
 
   if (!pass || !pass2) {
@@ -71,7 +71,7 @@ const changePassword = async (req, res) => {
 
   try {
     const hash = await Account.generateHash(pass);
-    await Account.updateOne({ username }, { password: hash }); 
+    await Account.updateOne({ username }, { password: hash });
     return res.json({ message: 'Password successfully changed!' });
   } catch (err) {
     console.log(err);
